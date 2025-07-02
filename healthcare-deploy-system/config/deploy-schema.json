@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "application": { "type": "string" },
+    "version": { "type": "string" },
+    "complianceLevel": {
+      "type": "string",
+      "enum": ["HIPAA", "SOC2", "FDA", "GDPR"]
+    },
+    "infrastructure": {
+      "type": "object",
+      "properties": {
+        "target": {
+          "type": "string",
+          "enum": ["ecs_fargate", "eks_cluster", "cloudfront_s3"]
+        },
+        "scaling": { "type": "object" },
+        "resources": { "type": "object" }
+      },
+      "required": ["target", "scaling", "resources"]
+    },
+    "security": { "type": "object" },
+    "monitoring": { "type": "object" }
+  },
+  "required": [
+    "application",
+    "version",
+    "complianceLevel",
+    "infrastructure",
+    "security",
+    "monitoring"
+  ],
+  "additionalProperties": true
+}

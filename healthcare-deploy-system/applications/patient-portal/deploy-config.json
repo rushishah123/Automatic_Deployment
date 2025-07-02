@@ -1,0 +1,20 @@
+{
+  "application": "patient-portal",
+  "version": "1.0.0",
+  "complianceLevel": "HIPAA",
+  "infrastructure": {
+    "target": "ecs_fargate",
+    "scaling": { "min": 1, "max": 5 },
+    "resources": { "cpu": 512, "memory": 1024 }
+  },
+  "security": {
+    "encryptionAtRest": true,
+    "encryptionInTransit": true,
+    "authMethod": "OIDC",
+    "secrets": { "store": "aws_secrets_manager" }
+  },
+  "monitoring": {
+    "healthCheckPath": "/health",
+    "metrics": ["CPUUtilization","MemoryUtilization"]
+  }
+}
